@@ -22,3 +22,18 @@ int getMaxFromFile(FileInfo fd,int len) {
 	}
 	return max;
 }
+char *getSysPath() {
+	FILE *fp;
+	static char path[0xff];
+	fp = fopen("data\\path.dat","r");
+	if (fp == NULL) return NULL;
+	fgets(path,0xff,fp);
+	fclose(fp);
+	return path;
+}
+void writeSysPath(char *path) {
+	FILE *fp;
+	fp = fopen("data\\path.dat", "w");
+	fputs(path,fp);
+	fclose(fp);
+}

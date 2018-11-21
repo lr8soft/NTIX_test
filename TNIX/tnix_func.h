@@ -36,9 +36,10 @@ void setInfo() {
 	system("cls");
 }
 int checkInput(char *input) {
-	char *temp;
+	char *temp,*command;
 	temp = strtok(input," ");
-	int t = do_command_work(temp, tnix_command, 1);
+	command = strtok(NULL, " ");
+	int t = do_command_work(temp,command, tnix_command, 2);
 	if (t != 0) return t;
 	return 0;
 }

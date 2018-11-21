@@ -7,63 +7,68 @@
 #include <string.h>
 #include "bnix_basic_func.h"
 #endif
-void command_ls();
-typedef void (*callback)(void);
+extern char sysinfo[] = "TNIX v0.0\nPowered by LT_lrsoft\n";
+const char truepath[] = "file\\";
+char showpath[0xff] = "";
+void command_ls(char *input);
+void command_cd(char *input);
+typedef void (*callback)(char*);
 typedef struct {
 	const char *name;
 	callback func;
 }tnix_func_define;
-extern char sysinfo[] = "TNIX v0.0\nPowered by LT_lrsoft\n";
-const char truepath[] = "file\\";
-char showpath[128]="";
 tnix_func_define tnix_command[10] = {
-	{"ls",command_ls}
+	{"ls",command_ls},
+	{"cd",command_cd}
 };
-void command_ls() {
-	char temp[0xff]; int i,jlen=0,l;FileInfo fd;
+void command_ls(char *input) {
+	char temp[0xff]; int i,jlen=0;FileInfo fd;
 	char tx[0xff]="";
-	strcpy(temp,truepath);
-	strcat(temp, showpath);
+	strcpy(temp, getSysPath());
 	strcat(temp,"*.*");
 	_finddata_t info;
 	long handle = _findfirst(temp,&info);
 	do{
-//		fd.finfo[fd.len].name = info.name;
-//		fd.finfo[fd.len].size = info.size;
 		if (strlen(info.name) > jlen) {
 			jlen = strlen(info.name);
 		}
-//		printf("%s %lf\n", fd.finfo[fd.len].name,fd.finfo[fd.len].size);
-//		fd.len++;
 	} while (_findnext(handle, &info) == 0);
-//	printf("%s %lf",fd.finfo[2].name,fd.finfo[2].size);
 	_findclose(handle);
-//	for (l = 0; l < jlen; l++) {
-//		if (l == 0) strcpy(tx, " "); continue;
-//		strcat(tx, " ");
-//	}
-/*	for (i = 0; i < fd.len;i++) {
-		printf("%s",fd.finfo[i].name);
-		printf("%s|%s",tx,tx);
-		printf("%lf\n",fd.finfo[i].size);
-	}*/
-	handle = _findfirst(temp, &info);
+
+	long handle2= _findfirst(temp, &info);
 	int kkk;
 	do {
+		int l;
 		kkk = strlen(info.name);
-		printf("%d %d", jlen,kkk);
+		strcpy(tx,"");
 		for (l = 0; l < jlen-kkk; l++) {
+			if (jlen - kkk == 0) break;
 			strcat(tx, " ");
 		}
-		printf("%s%s|%s%lf\n",info.name,tx,tx,info.size);
-	} while (_findnext(handle, &info) == 0);
-	_findclose(handle);
+		printf("%s%s| %u\n",info.name,tx,tx,info.size);
+	} while (_findnext(handle2, &info) == 0);
+	_findclose(handle2);
 }
-int do_command_work(const char *name, tnix_func_define *temp, int len) {
+void command_cd(char *input) {
+	char path[0xfff];
+	if (input!=NULL) {
+		strcpy(path, getSysPath());
+		strcat(path, input);
+		_finddata_t info;
+		long handle = _findfirst(path, &info);
+		if (handle == -1) printf("No folder \'%s\'.\n", input); return;
+		writeSysPath(path);
+		printf("%s", showpath);
+	}
+	else {
+		printf("No folder \'%s\'.\n", input);
+	}
+}
+int do_command_work(const char *name, char *command,tnix_func_define *temp, int len) {
 	int i; static int ktemp=1;
 	for (i = 0; i < len;i++) {
 		if (!(strcmp(temp[i].name, name))) {
-			temp[i].func();
+			temp[i].func(command);
 			return 1;
 		}
 	}
