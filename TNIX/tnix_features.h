@@ -8,8 +8,6 @@
 #include "bnix_basic_func.h"
 #endif
 extern char sysinfo[] = "TNIX v0.0\nPowered by LT_lrsoft\n";
-const char truepath[] = "file\\";
-char showpath[0xff] = "";
 void command_ls(char *input);
 void command_cd(char *input);
 typedef void (*callback)(char*);
@@ -25,7 +23,7 @@ void command_ls(char *input) {
 	char temp[0xff]; int i,jlen=0;FileInfo fd;
 	char tx[0xff]="";
 	strcpy(temp, getSysPath());
-	strcat(temp,"*.*");
+	strcat(temp,"\\*.*");
 	_finddata_t info;
 	long handle = _findfirst(temp,&info);
 	do{
@@ -50,15 +48,29 @@ void command_ls(char *input) {
 	_findclose(handle2);
 }
 void command_cd(char *input) {
-	char path[0xfff];
+	char path[0xfff],wpath[0xfff];
+	if (strcmp(input,"..")==0&& strcmp(getSysPath(),"file\\")!=0) {
+		char *tail, *cpath = getSysPath();
+		int len = strlen(getSysPath());
+		for (tail = strrchr(cpath, '\\'); tail < strrchr(cpath, '\\') +len;tail++) {
+			*tail = '\0';
+		}
+		writeSysPath(cpath);
+		return;
+	}
 	if (input!=NULL) {
 		strcpy(path, getSysPath());
 		strcat(path, input);
-		_finddata_t info;
-		long handle = _findfirst(path, &info);
-		if (handle == -1) printf("No folder \'%s\'.\n", input); return;
-		writeSysPath(path);
-		printf("%s", showpath);
+		int handle = _access(path,0);
+		if (handle == -1) {
+			printf("No folder \'%s\'.\n", input); 
+			return;
+		}
+		else {
+			strcpy(wpath, path);
+			writeSysPath(wpath);
+		}
+		
 	}
 	else {
 		printf("No folder \'%s\'.\n", input);
