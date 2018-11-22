@@ -11,6 +11,19 @@ char usrname[20], passwd[20];
 void SleepInt(int k) {
 	while (k--);
 }
+char *splitString(char *input, int split) {
+	char *temp, *ftemp; int len, delta, i = 0;
+	static char rechar[0xff];
+	memset(rechar,0,sizeof(rechar));
+	temp = strchr(input, split);
+	len = strlen(input);
+	delta = temp - input;
+	for (ftemp = temp+1; ftemp < temp + len - delta; ftemp++) {
+		rechar[i] = *ftemp;
+		i++;
+	}
+	return rechar;
+}
 int loadInfo() {
 	FILE *fp;
 	fp = fopen("data\\info.dat","rb");
@@ -36,10 +49,12 @@ void setInfo() {
 	system("cls");
 }
 int checkInput(char *input) {
-	char *temp,*command;
+	char *temp=NULL,*command=NULL,origininput[0xff];
+	strcpy(origininput,input);
 	temp = strtok(input," ");
-	command = strtok(NULL, " ");
-	int t = do_command_work(temp,command, tnix_command, 2);
+	if((strstr(origininput," "))!=NULL) 
+		command = splitString(origininput,' ');
+	int t = do_command_work(temp,command, tnix_command, sizeof(tnix_command)/8);
 	if (t != 0) return t;
 	return 0;
 }
@@ -61,7 +76,6 @@ void loopCheckInput() {
 		}
 	}
 }
-
 
 
 

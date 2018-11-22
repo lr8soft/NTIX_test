@@ -5,25 +5,34 @@
 #include <stdlib.h>
 #include <io.h>
 #include <string.h>
+#include <inttypes.h> 
+#include <direct.h>
 #include "bnix_basic_func.h"
 #endif
 extern char sysinfo[] = "TNIX v0.0\nPowered by LT_lrsoft\n";
 void command_ls(char *input);
 void command_cd(char *input);
+void command_mkdir(char *input);
+void command_clear(char *input);
+void command_pwd(char *input);
 typedef void (*callback)(char*);
 typedef struct {
 	const char *name;
 	callback func;
 }tnix_func_define;
-tnix_func_define tnix_command[10] = {
+tnix_func_define tnix_command[] = {
 	{"ls",command_ls},
-	{"cd",command_cd}
+	{"cd",command_cd},
+	{"mkdir",command_mkdir},
+	{"clear",command_clear},
+	{"pwd",command_pwd}
 };
 void command_ls(char *input) {
 	char temp[0xff]; int i,jlen=0;FileInfo fd;
 	char tx[0xff]="";
+	unsigned fsize;
 	strcpy(temp, getSysPath());
-	strcat(temp,"\\*.*");
+	strcat(temp,"*.*");
 	_finddata_t info;
 	long handle = _findfirst(temp,&info);
 	do{
@@ -43,17 +52,26 @@ void command_ls(char *input) {
 			if (jlen - kkk == 0) break;
 			strcat(tx, " ");
 		}
-		printf("%s%s| %u\n",info.name,tx,tx,info.size);
+		fsize = (unsigned)info.size;
+		printf("%s%s| %lu \n",info.name,tx,tx,fsize);
 	} while (_findnext(handle2, &info) == 0);
 	_findclose(handle2);
 }
 void command_cd(char *input) {
 	char path[0xfff],wpath[0xfff];
-	if (strcmp(input,"..")==0&& strcmp(getSysPath(),"file\\")!=0) {
+	char originpath[] = "file\\";
+	if (input==NULL) return;
+	if (strcmp(input,"..")==0|| strcmp(input, ".") == 0) {
 		char *tail, *cpath = getSysPath();
+		removePathTail(cpath);
+		char *temp = strrchr(cpath, '\\');
 		int len = strlen(getSysPath());
-		for (tail = strrchr(cpath, '\\'); tail < strrchr(cpath, '\\') +len;tail++) {
+		for (tail = temp; tail < temp+len;tail++) {
 			*tail = '\0';
+		}
+		if (strcmp(cpath,"file")==0) {
+			writeSysPath(originpath);
+			return;
 		}
 		writeSysPath(cpath);
 		return;
@@ -70,11 +88,24 @@ void command_cd(char *input) {
 			strcpy(wpath, path);
 			writeSysPath(wpath);
 		}
-		
 	}
 	else {
 		printf("No folder \'%s\'.\n", input);
 	}
+}
+void command_mkdir(char *input) {
+	char newpath[0xfff];
+	if (input == NULL) return;
+	strcpy(newpath,getSysPath());
+	strcat(newpath,input);
+	int temp=_mkdir(newpath);
+	if (temp != 0) printf("Can\'t create \'%s\' directory!\n",input);
+}
+void command_clear(char *input) {
+	system("cls");
+}
+void command_pwd(char *input) {
+	printf("%s\n",getSysPath());
 }
 int do_command_work(const char *name, char *command,tnix_func_define *temp, int len) {
 	int i; static int ktemp=1;

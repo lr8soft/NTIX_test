@@ -22,6 +22,15 @@ int getMaxFromFile(FileInfo fd,int len) {
 	}
 	return max;
 }
+void makePathStandard(char *path) {
+	int len, klen;
+	char *lastword;
+	len = strlen(path);
+	lastword = strrchr(path, '\\');
+	if (strcmp(lastword, path + len - 1) != 0) {
+		strcat(path, "\\");
+	}
+}
 char *getSysPath() {
 	FILE *fp;
 	static char path[0xff];
@@ -34,6 +43,24 @@ char *getSysPath() {
 void writeSysPath(char *path) {
 	FILE *fp;
 	fp = fopen("data\\path.dat", "w");
+	makePathStandard(path);
 	fputs(path,fp);
 	fclose(fp);
 }
+void removePathTail(char *path) {
+	char *tail;
+	int len = strlen(path);
+	if (strcmp(path + len - 1,"\\")==0) {
+		*(path + len - 1) = '\0';
+	}
+}
+char *removeStringFromString(char *string,char *remove) {
+	static char rechar[0xff];
+	
+	return rechar;
+}
+/*int getFuncCount(tnix_func_define *funcs) {
+	int count = 0;
+	count=sizeof(funcs) / 8;
+	return count;
+}*/
