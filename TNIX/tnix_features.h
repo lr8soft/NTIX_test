@@ -15,6 +15,7 @@ void command_cd(char *input);
 void command_mkdir(char *input);
 void command_clear(char *input);
 void command_pwd(char *input);
+void command_rmdir(char *input);
 typedef void (*callback)(char*);
 typedef struct {
 	const char *name;
@@ -25,7 +26,8 @@ tnix_func_define tnix_command[] = {
 	{"cd",command_cd},
 	{"mkdir",command_mkdir},
 	{"clear",command_clear},
-	{"pwd",command_pwd}
+	{"pwd",command_pwd},
+	{"rmdir",command_rmdir}
 };
 void command_ls(char *input) {
 	char temp[0xff]; int i,jlen=0;FileInfo fd;
@@ -106,6 +108,14 @@ void command_clear(char *input) {
 }
 void command_pwd(char *input) {
 	printf("%s\n",getSysPath());
+}
+void command_rmdir(char *input) {
+	if (input == NULL) return;
+	char newpath[0xfff];
+	strcpy(newpath, getSysPath());
+	strcat(newpath, input);
+	int temp = _rmdir(newpath);
+	if (temp != 0) printf("Can\'t delete \'%s\' directory!\n", input);
 }
 int do_command_work(const char *name, char *command,tnix_func_define *temp, int len) {
 	int i; static int ktemp=1;
