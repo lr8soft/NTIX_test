@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "tnix_features.h"
+#include "tnix_extern.h"
 #endif
 char usrname[20], passwd[20];
 void SleepInt(int k) {
@@ -59,6 +60,7 @@ int checkInput(char *input) {
 	return 0;
 }
 int externCommand(char *input) {
+
 	return 0;
 }
 void loopCheckInput() {

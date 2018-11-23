@@ -7,7 +7,7 @@
 #include <string.h>
 #include <inttypes.h> 
 #include <direct.h>
-#include "bnix_basic_func.h"
+#include "tnix_basic_func.h"
 #endif
 extern char sysinfo[] = "TNIX v0.0\nPowered by LT_lrsoft\n";
 void command_ls(char *input);

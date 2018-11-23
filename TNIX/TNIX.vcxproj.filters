@@ -21,7 +21,10 @@
     <ClInclude Include="tnix_features.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="bnix_basic_func.h">
+    <ClInclude Include="tnix_basic_func.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tnix_extern.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
