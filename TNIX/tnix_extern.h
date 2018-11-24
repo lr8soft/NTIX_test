@@ -14,7 +14,6 @@ void AddNewLib(const char *name,char *path) {
 		fp = fopen("extern\\TNIX_libs.h", "w");
 		fprintf(fp,"#pragma comment (lib,\"%s\")\n",path);
 		fprintf(fp, "void %s(char *input); \n", name);
-		//char input[0xff] = "#pragma comment (lib,\"%s\")";
 		fclose(fp);
 	}
 	while (fgets(otext, 0xff, fp) != NULL) {

@@ -65,6 +65,7 @@ void command_cd(char *input) {
 	if (input==NULL) return;
 	if (strcmp(input,"..")==0|| strcmp(input, ".") == 0) {
 		char *tail, *cpath = getSysPath();
+		if (strcmp(cpath, "file\\") == 0) return;
 		removePathTail(cpath);
 		char *temp = strrchr(cpath, '\\');
 		int len = strlen(getSysPath());
