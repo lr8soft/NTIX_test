@@ -45,6 +45,9 @@ void setInfo() {
 	fwrite(usrname, 20 * sizeof(char), 1, fp);
 	fwrite(passwd, 20 * sizeof(char), 1, fp);
 	fclose(fp);
+	FileInit("extern");
+	FileInit("file");
+	FileInit("data");
 	printf("Setting finished.");
 	SleepInt(3000);
 	system("cls");

@@ -64,8 +64,10 @@ char *getNowPath() {
 	_getcwd(path,0xfff);
 	return path;
 }
-/*int getFuncCount(tnix_func_define *funcs) {
-	int count = 0;
-	count=sizeof(funcs) / 8;
-	return count;
-}*/
+void FileInit(const char *name) {
+	char folder[0xff];
+	strcpy(folder, getNowPath());
+	strcat(folder, "\\");
+	strcat(folder, name);
+	_mkdir(folder);
+}

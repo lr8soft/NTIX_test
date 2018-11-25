@@ -4,6 +4,6 @@
 #include <io.h>
 void main() {
 	CompileSRC();
-	loopCheckInput();
+	loopCheckInput();  
 	system("pause>null");
 }
