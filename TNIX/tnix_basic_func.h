@@ -59,6 +59,11 @@ char *removeStringFromString(char *string,char *remove) {
 	
 	return rechar;
 }
+char *getNowPath() {
+	static char path[0xfff];
+	_getcwd(path,0xfff);
+	return path;
+}
 /*int getFuncCount(tnix_func_define *funcs) {
 	int count = 0;
 	count=sizeof(funcs) / 8;

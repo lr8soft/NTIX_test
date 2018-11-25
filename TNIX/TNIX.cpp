@@ -3,6 +3,7 @@
 #include "tnix_extern.h"
 #include <io.h>
 void main() {
+	CompileSRC();
 	loopCheckInput();
 	system("pause>null");
 }

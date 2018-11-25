@@ -60,21 +60,36 @@ int checkInput(char *input) {
 	return 0;
 }
 int externCommand(char *input) {
-
+	FILE *fp;
+	char command[]="extern\\TNIX_ExternDesign.exe";
+	int finput=0;
+	fp = fopen("extern\\temp\\extern_exchange.dat","w+");
+	fprintf(fp,"%s",input);
+	fclose(fp);
+	system(command);
+	SleepInt(1500);
+	fp = fopen("extern\\temp\\extern_exchange.dat", "rb");
+	fread(&finput, 1, sizeof(int), fp);
+	if (finput==1) {
+		fclose(fp);
+		return 1;
+	}
+	fclose(fp);
 	return 0;
 }
 void loopCheckInput() {
-	char input[0xff]; int temp = 0;
+	char input[0xff],kinput[0xff+1]; int temp = 0;
 	printf("%s",sysinfo);
 	if (!loadInfo()) setInfo();
 	while (1) {
 		printf("%s:>",usrname);
 		gets_s(input,0xff);
+		strcpy(kinput,input);
 		temp = checkInput(input);
 		if (strcmp(input, "exit") == 0) return;
 		if (temp==0) {
-			temp = externCommand(input);
-			if (temp == 0) printf("No command \'%s\' found.\n",input);
+			temp = externCommand(kinput);
+			if (temp == 0) printf("No command \'%s\' found.\n",kinput);
 		}
 	}
 }
