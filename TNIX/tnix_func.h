@@ -56,6 +56,7 @@ int checkInput(char *input) {
 	char *temp=NULL,*command=NULL,origininput[0xff];
 	strcpy(origininput,input);
 	temp = strtok(input," ");
+	if (temp == NULL) return -1;
 	if((strstr(origininput," "))!=NULL) 
 		command = splitString(origininput,' ');
 	int t = do_command_work(temp,command, tnix_command, sizeof(tnix_command)/8);
@@ -63,7 +64,7 @@ int checkInput(char *input) {
 	return 0;
 }
 int externCommand(char *input) {
-	FILE *fp;
+/*	FILE *fp;
 	char command[]="extern\\TNIX_ExternDesign.exe";
 	int finput=0;
 	fp = fopen("extern\\temp\\extern_exchange.dat","w+");
@@ -77,7 +78,37 @@ int externCommand(char *input) {
 		fclose(fp);
 		return 1;
 	}
-	fclose(fp);
+	fclose(fp);*/
+
+	return 0;
+}
+int checkCommandRun(char *input) {
+	if (input == NULL) return 0;
+	FILE *fp;
+	int len = strlen(input);
+	char temp[3],ctemp[0xff],path[0xff];
+	strcpy(path, getSysPath());
+	strcat(path, "/");
+	if (len>=2) {
+		memcpy(temp,input,sizeof(char)*2);
+		temp[2] = '\0';
+		input += 2;
+		memcpy(ctemp, input, sizeof(char)*(len - 2));
+		ctemp[len - 2] = '\0';
+		if (strcmp(temp,"./")==0) {
+			strcat(path,ctemp);
+			fp = fopen(path,"r");
+			if (fp!=NULL) {
+				system(ctemp);
+				printf("\n");
+				return 1;
+			}
+			else {
+				printf("Can\'t run \'%s\'!\n", path);
+				return -1;
+			}
+		}
+	}
 	return 0;
 }
 void loopCheckInput() {
@@ -88,8 +119,12 @@ void loopCheckInput() {
 		printf("%s:>",usrname);
 		gets_s(input,0xff);
 		strcpy(kinput,input);
+		temp = checkCommandRun(kinput);
+		if (temp == 1||temp==-1) continue;
+		temp = 0;
 		temp = checkInput(input);
 		if (strcmp(input, "exit") == 0) return;
+		if (temp == -1) continue;
 		if (temp==0) {
 			temp = externCommand(kinput);
 			if (temp == 0) printf("No command \'%s\' found.\n",kinput);

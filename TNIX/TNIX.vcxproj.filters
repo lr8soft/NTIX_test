@@ -27,6 +27,9 @@
     <ClInclude Include="tnix_extern.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="tnix_externso.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TNIX.cpp">

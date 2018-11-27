@@ -1,4 +1,5 @@
 #pragma once
+#pragma comment(lib,"TNIX_NotePad.lib")
 #ifndef _tnixfeatures_h_
 #define _tnixfeatures_h_
 #include <stdio.h>
@@ -16,7 +17,10 @@ void command_mkdir(char *input);
 void command_clear(char *input);
 void command_pwd(char *input);
 void command_rmdir(char *input);
-void command_runprogram(char *input);
+void command_tcc(char *input);
+void command_txteditor(char *input);
+//
+void tnixnote(char *input);
 typedef void (*callback)(char*);
 typedef struct {
 	const char *name;
@@ -29,8 +33,10 @@ tnix_func_define tnix_command[] = {
 	{"clear",command_clear},
 	{"pwd",command_pwd},
 	{"rmdir",command_rmdir},
-	{"./",command_runprogram}
+	{"tcc",command_tcc},
+	{"tnote",command_txteditor}
 };
+
 void command_ls(char *input) {
 	char temp[0xff]; int i,jlen=0;FileInfo fd;
 	char tx[0xff]="";
@@ -120,20 +126,16 @@ void command_rmdir(char *input) {
 	int temp = _rmdir(newpath);
 	if (temp != 0) printf("Can\'t delete \'%s\' directory!\n", input);
 }
-void command_runprogram(char *input){
+void command_tcc(char *input) {
 	if (input == NULL) return;
-	FILE *fp;
-	char path[0xff];
-	strcpy(path,getSysPath());
-	strcat(path,"\\");
-	strcat(path,input);
-	fp=fopen(path,"r");
-	if(fp!=NULL){
-		system(path);
-		printf("\n");
-	}else{
-		printf("Can\'t run \'%s\'!\n",path);
-	}
+	char tccpath[0xfff];
+	strcpy(tccpath,getNowPath());
+	strcat(tccpath,"\\tcc\\tcc.exe ");
+	strcat(tccpath,input);
+	system(tccpath);
+}
+void command_txteditor(char *input) {
+	tnixnote(input);
 }
 int do_command_work(const char *name, char *command,tnix_func_define *temp, int len) {
 	int i; static int ktemp=1;

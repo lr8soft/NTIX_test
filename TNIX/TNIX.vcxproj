@@ -120,6 +120,7 @@
   <ItemGroup>
     <ClInclude Include="tnix_basic_func.h" />
     <ClInclude Include="tnix_extern.h" />
+    <ClInclude Include="tnix_externso.h" />
     <ClInclude Include="tnix_features.h" />
     <ClInclude Include="tnix_func.h" />
   </ItemGroup>
