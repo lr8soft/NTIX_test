@@ -7,6 +7,7 @@
 #include <string.h>
 #include "tnix_features.h"
 #include "tnix_extern.h"
+#include "tnix_externdll.h"
 #endif
 char usrname[20], passwd[20];
 void SleepInt(int k) {
@@ -59,7 +60,7 @@ int checkInput(char *input) {
 	if (temp == NULL) return -1;
 	if((strstr(origininput," "))!=NULL) 
 		command = splitString(origininput,' ');
-	int t = do_command_work(temp,command, tnix_command, sizeof(tnix_command)/8);
+	int t = do_command_work(temp,command, tnix_command, sizeof(tnix_command)/12);
 	if (t != 0) return t;
 	return 0;
 }
@@ -79,8 +80,15 @@ int externCommand(char *input) {
 		return 1;
 	}
 	fclose(fp);*/
-
-	return 0;
+	char *command=NULL, *addition=NULL;
+	int temp = 0;
+	addition = strtok(input," ");
+	command = addition;
+	addition = strtok(NULL, " ");
+	//printf("%s %s",command,addition);
+	temp= useDllFunc(command,addition);
+	if (temp != 0) printf("\n");
+	return temp;
 }
 int checkCommandRun(char *input) {
 	if (input == NULL) return 0;

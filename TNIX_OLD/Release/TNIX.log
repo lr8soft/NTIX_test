@@ -1,0 +1,9 @@
+﻿  TNIX.cpp
+d:\bnix\tnix\tnix\tnix.cpp(4): warning C4326: “main”的返回类型应为“int”而非“void”
+d:\bnix\tnix\tnix\tnix.cpp(7): warning C4806: “==”: 不安全操作: 从类型“bool”提升到类型“int”的值不能等于给定的常量
+  正在生成代码
+  0 of 14 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  TNIX.vcxproj -> D:\BNIX\TNIX\Release\TNIX.exe

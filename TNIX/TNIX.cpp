@@ -3,7 +3,8 @@
 #include "tnix_extern.h"
 #include <io.h>
 void main() {
-	//CompileSRC();
+//	loadExternDll();
+//	externDllInit();
 	loopCheckInput();  
 	system("pause>null");
 }

@@ -19,22 +19,26 @@ void command_pwd(char *input);
 void command_rmdir(char *input);
 void command_tcc(char *input);
 void command_txteditor(char *input);
-//
+void command_cp(char *input);
+void showAllCommandHelp(char *input);
 void tnixnote(char *input);
 typedef void (*callback)(char*);
 typedef struct {
 	const char *name;
+	const char *info;
 	callback func;
 }tnix_func_define;
 tnix_func_define tnix_command[] = {
-	{"ls",command_ls},
-	{"cd",command_cd},
-	{"mkdir",command_mkdir},
-	{"clear",command_clear},
-	{"pwd",command_pwd},
-	{"rmdir",command_rmdir},
-	{"tcc",command_tcc},
-	{"tnote",command_txteditor}
+	{"ls","Show all files in the folder.",command_ls},
+	{"cd","Change the user path.",command_cd},
+	{"mkdir","Create a new folder.",command_mkdir},
+	{"clear","Clean the screen.",command_clear},
+	{"pwd","Show now user path.",command_pwd},
+	{"rmdir","Delete the folder.",command_rmdir},
+	{"tcc","Use the TinyCC compiler.",command_tcc},
+	{"tnote","Use TNIX note editor.",command_txteditor},
+	{"cp","Copy those files.",command_cd},
+	{"help","Show all command help.",showAllCommandHelp}
 };
 
 void command_ls(char *input) {
@@ -136,6 +140,15 @@ void command_tcc(char *input) {
 }
 void command_txteditor(char *input) {
 	tnixnote(input);
+}
+void command_cp(char *input) {
+	
+}
+void showAllCommandHelp(char *input) {
+	int i;
+	for (i = 0; i < sizeof(tnix_command) / sizeof(tnix_func_define);i++) {
+		printf("%s -%s\n",tnix_command[i].name,tnix_command[i].info);
+	}
 }
 int do_command_work(const char *name, char *command,tnix_func_define *temp, int len) {
 	int i; static int ktemp=1;

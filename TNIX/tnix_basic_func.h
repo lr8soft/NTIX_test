@@ -12,7 +12,7 @@ typedef struct {
 	FInfo finfo[0xff];
 	int len=0;
 }FileInfo;
-int getMaxFromFile(FileInfo fd,int len) {
+/*int getMaxFromFile(FileInfo fd,int len) {
 	int i,max=NULL;
 	for (i = 0; i < len-1;i++) {
 		max = strlen(fd.finfo[i].name);
@@ -21,7 +21,7 @@ int getMaxFromFile(FileInfo fd,int len) {
 		}
 	}
 	return max;
-}
+}*/
 void makePathStandard(char *path) {
 	int len, klen;
 	char *lastword;
@@ -54,11 +54,11 @@ void removePathTail(char *path) {
 		*(path + len - 1) = '\0';
 	}
 }
-char *removeStringFromString(char *string,char *remove) {
+/*char *removeStringFromString(char *string,char *remove) {
 	static char rechar[0xff];
 	
 	return rechar;
-}
+}*/
 char *getNowPath() {
 	static char path[0xfff];
 	_getcwd(path,0xfff);
@@ -70,4 +70,7 @@ void FileInit(const char *name) {
 	strcat(folder, "\\");
 	strcat(folder, name);
 	_mkdir(folder);
+}
+void TNIXError(const char *info) {
+	printf("TNIX Err:%s\n",info);
 }
