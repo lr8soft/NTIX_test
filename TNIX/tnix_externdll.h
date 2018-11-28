@@ -14,7 +14,7 @@ typedef struct {
 }ExternDllFunc;
 ExternDllFunc dllAFunc[10];
 int dllFuncCount = 0;
-/*void loadExternDll(char *path,char *funcname) {
+void loadExternDll(char *path,char *funcname) {
 	HINSTANCE edll = LoadLibrary(path);
 	externfunc efunc = NULL;
 	efunc = (externfunc)GetProcAddress(edll,funcname);
@@ -65,7 +65,7 @@ void externDllInit() {
 		loadExternDll(dllpath, dlltemp); 
 	}
 	fclose(fp);
-}*/
+}
 int useDllFunc(char *funcname,char *command) {
 	FILE *fp;
 	memset(dllAFunc, 0, sizeof(dllAFunc));
