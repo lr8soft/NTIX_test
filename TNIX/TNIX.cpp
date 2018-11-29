@@ -3,8 +3,6 @@
 #include "tnix_extern.h"
 #include <io.h>
 void main() {
-//	loadExternDll();
-//	externDllInit();
 	loopCheckInput();  
-	system("pause>null");
+//	system("pause>null");
 }

@@ -64,6 +64,19 @@ char *getNowPath() {
 	_getcwd(path,0xfff);
 	return path;
 }
+void setNewInfo() {
+	FILE *fp;
+	char usrname[20], passwd[20];
+	printf("Enter the new root username:");
+	scanf("%s", usrname);
+	printf("\nEnter the new root password:");
+	scanf("%s", passwd);
+	if (usrname == NULL || passwd == NULL) return;
+	fp = fopen("data\\info.dat", "wb");
+	fwrite(usrname, 20 * sizeof(char), 1, fp);
+	fwrite(passwd, 20 * sizeof(char), 1, fp);
+	fclose(fp);
+}
 void FileInit(const char *name) {
 	char folder[0xff];
 	strcpy(folder, getNowPath());

@@ -13,6 +13,22 @@ char usrname[20], passwd[20];
 void SleepInt(int k) {
 	while (k--);
 }
+int loadInfo() {
+	FILE *fp;
+	fp = fopen("data\\info.dat", "rb");
+	if (fp == NULL) return 0;
+	fread(usrname, 20 * sizeof(char), 1, fp);
+	fread(passwd, 20 * sizeof(char), 1, fp);
+	fclose(fp);
+	return 1;
+}
+int checkInfo(char *usr, char *pwd) {
+	loadInfo();
+	if (strcmp(usr, usrname) == 0 && strcmp(pwd, passwd) == 0) {
+		return 1;
+	}
+	return 0;
+}
 char *splitString(char *input, int split) {
 	char *temp, *ftemp; int len, delta, i = 0;
 	static char rechar[0xff];
@@ -25,15 +41,6 @@ char *splitString(char *input, int split) {
 		i++;
 	}
 	return rechar;
-}
-int loadInfo() {
-	FILE *fp;
-	fp = fopen("data\\info.dat","rb");
-	if (fp == NULL) return 0;
-	fread(usrname,20*sizeof(char),1,fp);
-	fread(passwd, 20*sizeof(char),1,fp);
-	fclose(fp);
-	return 1;
 }
 void setInfo() {
 	FILE *fp;

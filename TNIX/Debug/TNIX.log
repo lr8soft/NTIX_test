@@ -1,11 +1,11 @@
 ﻿  TNIX.cpp
 d:\bnix\tnix\tnix\tnix_basic_func.h(26): warning C4101: “klen”: 未引用的局部变量
 d:\bnix\tnix\tnix\tnix_basic_func.h(51): warning C4101: “tail”: 未引用的局部变量
-d:\bnix\tnix\tnix\tnix_features.h(53): warning C4018: “>”: 有符号/无符号不匹配
-d:\bnix\tnix\tnix\tnix_features.h(70): warning C4477: “printf”: 格式字符串“%lu”需要类型“unsigned long”的参数，但可变参数 3 拥有了类型“char *”
-d:\bnix\tnix\tnix\tnix_features.h(70): warning C4474: printf: 格式字符串中传递的参数太多
-  d:\bnix\tnix\tnix\tnix_features.h(70): note: 占位符和其参数预计 3 可变参数，但提供的却是 4 参数
-d:\bnix\tnix\tnix\tnix_features.h(45): warning C4101: “i”: 未引用的局部变量
+d:\bnix\tnix\tnix\tnix_features.h(57): warning C4018: “>”: 有符号/无符号不匹配
+d:\bnix\tnix\tnix\tnix_features.h(74): warning C4477: “printf”: 格式字符串“%lu”需要类型“unsigned long”的参数，但可变参数 3 拥有了类型“char *”
+d:\bnix\tnix\tnix\tnix_features.h(74): warning C4474: printf: 格式字符串中传递的参数太多
+  d:\bnix\tnix\tnix\tnix_features.h(74): note: 占位符和其参数预计 3 可变参数，但提供的却是 4 参数
+d:\bnix\tnix\tnix\tnix_features.h(49): warning C4101: “i”: 未引用的局部变量
 d:\bnix\tnix\tnix\tnix_extern.h(30): warning C4101: “k”: 未引用的局部变量
 d:\bnix\tnix\tnix\tnix.cpp(5): warning C4326: “main”的返回类型应为“int”而非“void”
   TNIX.vcxproj -> D:\BNIX\TNIX\Debug\TNIX.exe

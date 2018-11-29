@@ -10,6 +10,8 @@
 #include <direct.h>
 #include "tnix_basic_func.h"
 #endif
+int checkInfo(char *usr, char *pwd);
+
 extern char sysinfo[] = "TNIX v0.0\nPowered by LT_lrsoft\n";
 void command_ls(char *input);
 void command_cd(char *input);
@@ -20,6 +22,7 @@ void command_rmdir(char *input);
 void command_tcc(char *input);
 void command_txteditor(char *input);
 void command_cp(char *input);
+void command_tnix(char *input);
 void showAllCommandHelp(char *input);
 void tnixnote(char *input);
 typedef void (*callback)(char*);
@@ -38,7 +41,8 @@ tnix_func_define tnix_command[] = {
 	{"tcc","Use the TinyCC compiler.",command_tcc},
 	{"tnote","Use TNIX note editor.",command_txteditor},
 	{"cp","Copy those files.",command_cd},
-	{"help","Show all command help.",showAllCommandHelp}
+	{"help","Show all command help.",showAllCommandHelp},
+	{"tnix","Change the setting of TNIX system.\n -add add new dll\n -root change the root user info.",command_tnix}
 };
 
 void command_ls(char *input) {
@@ -142,7 +146,34 @@ void command_txteditor(char *input) {
 	tnixnote(input);
 }
 void command_cp(char *input) {
-	
+	char command[0xff] = "copy ";
+	strcat(command,input);
+	system(command);
+}
+void command_tnix(char *input) {
+	if (input == NULL) return;
+	char *command = NULL;
+	FILE *dll;
+	dll = fopen("data\\dll.dat","a");
+	command = strtok(input," ");
+	if (command!=NULL) {
+		if (strcmp(command,"-add")==0) {
+			command = strtok(NULL," ");
+			if (command != NULL) {
+				fprintf(dll,"%s|",command);
+				printf("Add %s to TNIX Function library successfully.\n",command);
+			}
+		}
+		else if (strcmp(command, "-root") == 0) {
+			int ret = 0;
+			char usr[20], pwd[20];
+			printf("Enter username and password:");
+			scanf("%s %s",usr,pwd);
+			ret = checkInfo(usr,pwd);
+			if (ret) setNewInfo();
+		}
+	}
+	fclose(dll);
 }
 void showAllCommandHelp(char *input) {
 	int i;
