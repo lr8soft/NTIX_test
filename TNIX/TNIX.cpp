@@ -4,5 +4,4 @@
 #include <io.h>
 void main() {
 	loopCheckInput();  
-//	system("pause>null");
 }
