@@ -65,14 +65,15 @@ char *getNowPath() {
 	return path;
 }
 void setNewInfo() {
-	FILE *fp;
+	FILE *fp; int reg=233;
 	char usrname[20], passwd[20];
 	printf("Enter the new root username:");
 	scanf("%s", usrname);
 	printf("\nEnter the new root password:");
 	scanf("%s", passwd);
 	if (usrname == NULL || passwd == NULL) return;
-	fp = fopen("data\\info.dat", "wb");
+	fp = fopen("data\\info.dat", "wb+");
+	fwrite(&reg,sizeof(int),1,fp);
 	fwrite(usrname, 20 * sizeof(char), 1, fp);
 	fwrite(passwd, 20 * sizeof(char), 1, fp);
 	fclose(fp);

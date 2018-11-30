@@ -5,27 +5,51 @@ VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TNIX", "TNIX\TNIX.vcxproj", "{0C002987-6AA7-4515-AD22-235A845891EA}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TNIX_Installer", "TNIX_Installer\TNIX_Installer.vdproj", "{352D356C-9085-489E-9156-F37790834985}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
 		Debug|x64 = Debug|x64
 		Debug|x86 = Debug|x86
+		Release|Win32 = Release|Win32
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0C002987-6AA7-4515-AD22-235A845891EA}.Debug|x64.ActiveCfg = Debug|x64
-		{0C002987-6AA7-4515-AD22-235A845891EA}.Debug|x64.Build.0 = Debug|x64
+		{0C002987-6AA7-4515-AD22-235A845891EA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0C002987-6AA7-4515-AD22-235A845891EA}.Debug|Win32.Build.0 = Debug|Win32
+		{0C002987-6AA7-4515-AD22-235A845891EA}.Debug|x64.ActiveCfg = Debug|Win32
+		{0C002987-6AA7-4515-AD22-235A845891EA}.Debug|x64.Build.0 = Debug|Win32
 		{0C002987-6AA7-4515-AD22-235A845891EA}.Debug|x86.ActiveCfg = Debug|Win32
 		{0C002987-6AA7-4515-AD22-235A845891EA}.Debug|x86.Build.0 = Debug|Win32
+		{0C002987-6AA7-4515-AD22-235A845891EA}.Release|Win32.ActiveCfg = Release|Win32
+		{0C002987-6AA7-4515-AD22-235A845891EA}.Release|Win32.Build.0 = Release|Win32
 		{0C002987-6AA7-4515-AD22-235A845891EA}.Release|x64.ActiveCfg = Release|x64
 		{0C002987-6AA7-4515-AD22-235A845891EA}.Release|x64.Build.0 = Release|x64
 		{0C002987-6AA7-4515-AD22-235A845891EA}.Release|x86.ActiveCfg = Release|Win32
 		{0C002987-6AA7-4515-AD22-235A845891EA}.Release|x86.Build.0 = Release|Win32
+		{352D356C-9085-489E-9156-F37790834985}.Debug|Win32.ActiveCfg = Debug
+		{352D356C-9085-489E-9156-F37790834985}.Debug|Win32.Build.0 = Debug
+		{352D356C-9085-489E-9156-F37790834985}.Debug|x64.ActiveCfg = Debug
+		{352D356C-9085-489E-9156-F37790834985}.Debug|x86.ActiveCfg = Debug
+		{352D356C-9085-489E-9156-F37790834985}.Debug|x86.Build.0 = Debug
+		{352D356C-9085-489E-9156-F37790834985}.Release|Win32.ActiveCfg = Release
+		{352D356C-9085-489E-9156-F37790834985}.Release|Win32.Build.0 = Release
+		{352D356C-9085-489E-9156-F37790834985}.Release|x64.ActiveCfg = Release
+		{352D356C-9085-489E-9156-F37790834985}.Release|x86.ActiveCfg = Release
+		{352D356C-9085-489E-9156-F37790834985}.Release|x86.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F89DBB98-BB41-43A1-867A-F4DE9DC1155D}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,23 @@
+﻿  TNIX.cpp
+c:\users\soft\source\repos\tnix_test\tnix\tnix_basic_func.h(28): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\soft\source\repos\tnix_test\tnix\tnix_basic_func.h(26): warning C4101: “klen”: 未引用的局部变量
+c:\users\soft\source\repos\tnix_test\tnix\tnix_basic_func.h(52): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\soft\source\repos\tnix_test\tnix\tnix_basic_func.h(51): warning C4101: “tail”: 未引用的局部变量
+c:\users\soft\source\repos\tnix_test\tnix\tnix_features.h(56): warning C4244: “初始化”: 从“intptr_t”转换到“long”，可能丢失数据
+c:\users\soft\source\repos\tnix_test\tnix\tnix_features.h(59): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\soft\source\repos\tnix_test\tnix\tnix_features.h(64): warning C4244: “初始化”: 从“intptr_t”转换到“long”，可能丢失数据
+c:\users\soft\source\repos\tnix_test\tnix\tnix_features.h(68): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\soft\source\repos\tnix_test\tnix\tnix_features.h(75): warning C4477: “printf”: 格式字符串“%lu”需要类型“unsigned long”的参数，但可变参数 3 拥有了类型“char *”
+c:\users\soft\source\repos\tnix_test\tnix\tnix_features.h(75): warning C4313: “printf”: 格式字符串中的“%u”与“char *”类型的参数 3 冲突
+c:\users\soft\source\repos\tnix_test\tnix\tnix_features.h(75): warning C4474: printf: 格式字符串中传递的参数太多
+  c:\users\soft\source\repos\tnix_test\tnix\tnix_features.h(75): note: 占位符和其参数预计 3 可变参数，但提供的却是 4 参数
+c:\users\soft\source\repos\tnix_test\tnix\tnix_features.h(50): warning C4101: “i”: 未引用的局部变量
+c:\users\soft\source\repos\tnix_test\tnix\tnix_features.h(88): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\soft\source\repos\tnix_test\tnix\tnix_extern.h(30): warning C4101: “k”: 未引用的局部变量
+c:\users\soft\source\repos\tnix_test\tnix\tnix_func.h(37): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\soft\source\repos\tnix_test\tnix\tnix_func.h(38): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+c:\users\soft\source\repos\tnix_test\tnix\tnix_func.h(103): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+c:\users\soft\source\repos\tnix_test\tnix\tnix.cpp(5): warning C4326: “main”的返回类型应为“int”而非“void”
+TNIX.obj : error LNK2019: 无法解析的外部符号 "void __cdecl tnixnote(char *)" (?tnixnote@@YAXPEAD@Z)，该符号在函数 "void __cdecl command_txteditor(char *)" (?command_txteditor@@YAXPEAD@Z) 中被引用
+TNIX_NotePad.lib : warning LNK4272: 库计算机类型“x86”与目标计算机类型“x64”冲突
+C:\Users\soft\source\repos\TNIX_test\x64\Debug\TNIX.exe : fatal error LNK1120: 1 个无法解析的外部命令

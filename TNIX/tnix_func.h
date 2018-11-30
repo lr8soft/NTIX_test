@@ -14,9 +14,11 @@ void SleepInt(int k) {
 	while (k--);
 }
 int loadInfo() {
-	FILE *fp;
+	FILE *fp; int reg = 0;
 	fp = fopen("data\\info.dat", "rb");
 	if (fp == NULL) return 0;
+	fread(&reg, sizeof(int), 1, fp);
+	if (reg != 233) return 0;
 	fread(usrname, 20 * sizeof(char), 1, fp);
 	fread(passwd, 20 * sizeof(char), 1, fp);
 	fclose(fp);
@@ -43,13 +45,14 @@ char *splitString(char *input, int split) {
 	return rechar;
 }
 void setInfo() {
-	FILE *fp;
+	FILE *fp; int reg = 233;
 	printf("Enter the root username:");
 	scanf("%s",usrname);
 	printf("\nEnter the root password:");
 	scanf("%s", passwd);
 	if (usrname == NULL || passwd == NULL) return;
-	fp = fopen("data\\info.dat", "wb");
+	fp = fopen("data\\info.dat", "wb+");
+	fwrite(&reg,sizeof(int),1,fp);
 	fwrite(usrname, 20 * sizeof(char), 1, fp);
 	fwrite(passwd, 20 * sizeof(char), 1, fp);
 	fclose(fp);

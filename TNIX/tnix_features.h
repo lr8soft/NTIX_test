@@ -1,5 +1,5 @@
 #pragma once
-#pragma comment(lib,"TNIX_NotePad.lib")
+
 #ifndef _tnixfeatures_h_
 #define _tnixfeatures_h_
 #include <stdio.h>
@@ -10,6 +10,7 @@
 #include <direct.h>
 #include "tnix_basic_func.h"
 #endif
+#pragma comment(lib,"TNIX_NotePad.lib")
 int checkInfo(char *usr, char *pwd);
 
 extern char sysinfo[] = "TNIX v0.0\nPowered by LT_lrsoft\n";
